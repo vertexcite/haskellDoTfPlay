@@ -1,0 +1,21 @@
+resolver: lts-8.13
+
+packages:
+- location: '.'
+- extra-dep: true
+  location:
+    git: 'https://github.com/filopodia/open.git'
+    commit: '387683d052c370cd010827048fc75649e9590447'
+  subdirs:
+    - inliterate
+    - plotlyhs
+    - lucid-extras
+
+extra-deps:
+  - tensorflow-0.1.0.2
+  - tensorflow-proto-0.1.0.0
+  - tensorflow-core-ops-0.1.0.0
+  - tensorflow-ops-0.1.0.0
+  - tensorflow-opgen-0.1.0.0
+flags: {}
+extra-package-dbs: []

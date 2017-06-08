@@ -1,0 +1,33 @@
+
+name:                haskellDoTfPlay
+version:             0.1.0.0
+homepage:            https://github.com/vertexcite/haskellDoTfPlay#readme
+license:             BSD3
+author:              Randall Britten
+copyright:           2017 Randall Britten
+category:            DataScience
+extra-source-files:
+- README.md
+
+dependencies:
+  - base >= 4.7 && < 5
+  - random
+  - tensorflow
+  - tensorflow-core-ops
+  - tensorflow-ops
+##########################################
+# HASKELL.DO DEPENDENCIES, DO NOT REMOVE #
+##########################################
+  - inliterate
+  - lucid-extras
+##########################################
+
+
+executables:
+##########################################
+# HASKELL.DO RENDERING, DO NOT REMOVE    #
+##########################################
+  run-test:
+    source-dirs:      src
+    main:             Main.hs
+##########################################
