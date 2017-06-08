@@ -46,7 +46,7 @@ gradientDescent alpha loss params = do
 ```
 
 ```haskell do
--- Generate data where `y = x*3 + 8`.
+-- Generate data where `y = x*4 + 8`.
 xData <- replicateM 10 randomIO
 let yData = [x*4 + 8 | x <- xData]
 (w, b) <- fit xData yData
