@@ -15,6 +15,9 @@ dependencies:
   - tensorflow
   - tensorflow-core-ops
   - tensorflow-ops
+  - plotlyhs
+  - microlens
+  - text
 ##########################################
 # HASKELL.DO DEPENDENCIES, DO NOT REMOVE #
 ##########################################

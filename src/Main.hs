@@ -2,6 +2,10 @@
 ```haskell hide top
 import Inliterate.Import
 ```
+```html_header
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+```
+
 # TF/HaskellDo
 
 A really simple TensorFlow demo in HaskellDo.
@@ -9,11 +13,17 @@ A really simple TensorFlow demo in HaskellDo.
 ```haskell top
 import Control.Monad (replicateM, replicateM_, zipWithM)
 import System.Random (randomIO)
+import Data.Function ((&))
 
 import qualified TensorFlow.Core as TF
 import qualified TensorFlow.GenOps.Core as TF
 import qualified TensorFlow.Gradient as TF
 import qualified TensorFlow.Ops as TF
+
+import Graphics.Plotly hiding (text)
+import Graphics.Plotly.Lucid
+import Lens.Micro
+import Data.Text (Text, pack)
 ```
 
 ```haskell top
@@ -29,8 +39,10 @@ fit xData yData = TF.runSession $ do
     let yHat = (x `TF.mul` w) `TF.add` b
         loss = TF.square (yHat `TF.sub` y)
     -- Optimize with gradient descent.
-    trainStep <- gradientDescent 0.05 loss [w, b]
-    replicateM_ 200 (TF.run trainStep)
+    let learningRate = 0.01
+        iterations = 400
+    trainStep <- gradientDescent learningRate loss [w, b]
+    replicateM_ iterations (TF.run trainStep)
     -- Return the learned parameters.
     (TF.Scalar w', TF.Scalar b') <- TF.run (w, b)
     return (w', b')
@@ -43,16 +55,28 @@ gradientDescent alpha loss params = do
     let applyGrad param grad =
             TF.assign param (param `TF.sub` (TF.scalar alpha `TF.mul` grad))
     TF.group =<< zipWithM applyGrad params =<< TF.gradients loss params
+
+pointsCount = 30
 ```
 
 ```haskell do
 -- Generate data where `y = x*4 + 8`.
-xData <- replicateM 10 randomIO
+xData <- replicateM pointsCount randomIO
 let yData = [x*4 + 8 | x <- xData]
-(w, b) <- fit xData yData
+    minX = min xData
+    maxX = max xData
+
+-- Add some noise to y values
+yNoiseData <- replicateM pointsCount randomIO
+let noiseScale = 0.5
+    noisyY = zipWith (+) yData (map (*noiseScale) yNoiseData)
+(w, b) <- fit xData noisyY
 ```
 
 ```haskell eval
 show (w, b)
 ```
 
+```haskell eval
+plotly (pack "p2") [points (aes & x .~ fst & y .~ snd) (zip xData noisyY), line (aes & x .~ fst & y .~ snd) [(minimum xData, (minimum xData * w + b)), (maximum xData, (maximum xData * w + b))]]
+```
