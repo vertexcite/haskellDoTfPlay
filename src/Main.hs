@@ -1,14 +1,11 @@
-{-# LANGUAGE OverloadedStrings, TemplateHaskell #-}
 {-# OPTIONS_GHC -F -pgmF inlitpp #-}
+```haskell hide top
+import Inliterate.Import
+```
 ```html_header
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 ```
 
-```haskell hide top
-import Inliterate.Import
-import Graphics.Plotly hiding (text)
-import Graphics.Plotly.Lucid
-```
 # TF/HaskellDo
 
 A really simple TensorFlow demo in HaskellDo.
@@ -23,8 +20,10 @@ import qualified TensorFlow.GenOps.Core as TF
 import qualified TensorFlow.Gradient as TF
 import qualified TensorFlow.Ops as TF
 
+import Graphics.Plotly hiding (text)
+import Graphics.Plotly.Lucid
 import Lens.Micro
-import Data.Text (Text)
+import Data.Text (Text, pack)
 ```
 
 ```haskell top
@@ -79,5 +78,5 @@ show (w, b)
 ```
 
 ```haskell eval
-plotly "p2" [points (aes & x .~ fst & y .~ snd) (zip xData noisyY), line (aes & x .~ fst & y .~ snd) [(minimum xData, (minimum xData * w + b)), (maximum xData, (maximum xData * w + b))]]
+plotly (pack "p2") [points (aes & x .~ fst & y .~ snd) (zip xData noisyY), line (aes & x .~ fst & y .~ snd) [(minimum xData, (minimum xData * w + b)), (maximum xData, (maximum xData * w + b))]]
 ```
