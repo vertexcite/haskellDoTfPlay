@@ -16,7 +16,7 @@ Based on https://github.com/tensorflow/haskell/blob/release-0.1.0.2/tensorflow-o
 * Run this example stand-alone: 
 ```
     cd haskellDoTfPlay
-    stack build && stack exec run-test > demo.html && open demo.html
+    stack --nix build && stack --nix exec run-test > demo.html && open demo.html
 ```
 * If that worked, you should see the haskell code and the plot in your browser.
 * Get haskell.do (see http://haskell.do/ )
