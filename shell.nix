@@ -15,5 +15,5 @@ in
     ghc = if isNull ghc then pkgs.haskell.compiler.ghc822 else ghc;
     extraArgs = "--system-ghc";
     name = "tf-env";
-    buildInputs = with pkgs; [ snappy zlib protobuf libtensorflow ];
+    buildInputs = with pkgs; [ git snappy zlib protobuf libtensorflow ];
   }
