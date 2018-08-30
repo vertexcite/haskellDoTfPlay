@@ -6,7 +6,7 @@ We use Nix and Stack, pretty much copying the approach and config from https://g
 # Notes 
 
 * Nix is used since not all of the dependencies are Haskell, and Nix is a good way of handling native (i.e. non-Haskell) dependencies.
-* We could probably do the whole thing using just Nix, but I'm still getting my head around the Nix/Haskell method.  The use of Stack is based on the original approach used for this project, which relied on the user manually installing native dependencies.
+* We could probably do the whole thing using just Nix, but I'm still getting my head around the Nix/Haskell method.  The use of Stack is based on the original approach used for this project, which relied on the user manually installing native dependencies.  Also, HaskellDo relies on stack, although these instructions are not targetted at using HaskellDo.
 * Docker is not part of the requirements for reproducibility.  Rather, it is used here to give us a blank slate, in order to help ensure that all dependencies are specified in the code repository.
 
 # Steps:
