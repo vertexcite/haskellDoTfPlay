@@ -11,6 +11,7 @@ Based on https://github.com/tensorflow/haskell/blob/release-0.1.0.2/tensorflow-o
 
 
 # Instructions
+(The steps below require non-Haskell native dependencies to be installed.  https://github.com/vertexcite/haskellDoTfPlay/blob/ubuntu-1604/reproducibility-experiment.md shows an alternative, where Nix is used to manage native dependencies automatically.)
 * Get haskell/tensorflow working (see https://github.com/tensorflow/haskell ).  (Note: you actually only need tensorflow itself, since this example uses Haskell-Do, which relies on stack, which should take care of the haskell/tensorflow side, but I found that using the dependency installers from https://github.com/tensorflow/haskell simplified things. )
 * Clone this repo (i.e. `git clone https://github.com/vertexcite/haskellDoTfPlay.git` )
 * Run this example stand-alone: 
