@@ -16,7 +16,7 @@ docker run --name haskellDoTfDemo -t -i ubuntu:16.04 /bin/bash
 ## Inside container
 ```
 apt-get update
-apt-get install curl bzip2 vim git libgmp-dev sudo
+apt-get install curl bzip2 vim git libgmp-dev sudo xz-utils
 adduser user2
 visudo
 ```
